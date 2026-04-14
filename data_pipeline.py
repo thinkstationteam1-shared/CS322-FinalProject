@@ -26,12 +26,18 @@ from wordfreq import word_frequency
 # ---------------------------------------------------------------------------
 # Download NLTK data once
 # ---------------------------------------------------------------------------
-for _pkg in ["punkt", "stopwords", "averaged_perceptron_tagger"]:
+# Added "punkt_tab" to the list
+for _pkg in ["punkt", "punkt_tab", "stopwords", "averaged_perceptron_tagger"]:
     try:
-        nltk.data.find(f"tokenizers/{_pkg}")
+        # Check for both the old and new punkt structures
+        if _pkg == "punkt":
+            nltk.data.find("tokenizers/punkt")
+        elif _pkg == "punkt_tab":
+            nltk.data.find("tokenizers/punkt_tab")
+        else:
+            nltk.data.find(f"tokenizers/{_pkg}")
     except LookupError:
         nltk.download(_pkg, quiet=True)
-
 # ---------------------------------------------------------------------------
 # Vocabulary level presets  (word : frequency_rank threshold)
 # We use wordfreq to determine familiarity.
@@ -111,8 +117,10 @@ def load_wikipedia_corpus(num_articles: int = 50_000, language: str = "en") -> L
     """
     logger.info(f"Loading {num_articles:,} Wikipedia articles (streaming)…")
     dataset = load_dataset(
-        "wikipedia", "20220301.en",
-        split="train", streaming=True,
+        "wikimedia/wikipedia", 
+	"20231101.en",
+        split="train", 
+	streaming=True,
         trust_remote_code=True
     )
     articles = []
