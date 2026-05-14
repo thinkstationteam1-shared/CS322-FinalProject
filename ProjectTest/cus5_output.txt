@@ -1,0 +1,33 @@
+09:34:01  INFO      [init] torch.cuda.is_available() = True
+09:34:01  INFO      [init] GPUs visible to torch: 2
+09:34:01  INFO      [init] GPU 0: Tesla P40  total=23.9 GiB  allocated=22 GiB
+09:34:01  INFO      [init] GPU 1: Tesla P40  total=23.9 GiB  allocated=22 GiB
+09:34:01  INFO      [init] Base device='cuda' | multi-GPU sharding=yes
+09:34:01  INFO      [main] Args: {'corpus_file': 'data/corpus/candidates.jsonl', 'output_dir': 'data/finetune', 'num_pairs': 5000, 'model_id': 'meta-llama/Llama-3.1-8B-Instruct', 'token': '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', 'checkpoint_every': 50, 'batch_size': 8, 'debug': False, 'no_half': False}
+09:34:01  INFO      [main] Loaded 196 candidates.
+09:34:01  INFO      [main] Split: 177 train articles, 19 test articles
+09:34:01  INFO      [main] Output dir: data/finetune | Checkpoint dir: data/finetune/checkpoints
+09:34:01  INFO      [LocalLLM.__init__] Loading model: meta-llama/Llama-3.1-8B-Instruct
+09:34:01  INFO      [LocalLLM.__init__] use_half=True | detected GPUs=2
+09:34:01  INFO      [LocalLLM.__init__] torch dtype: torch.float16
+09:34:01  INFO      [LocalLLM.__init__] Dual-GPU max_memory: {0: '22GiB', 1: '22GiB', 'cpu': '0GiB'}
+09:34:01  INFO      [LocalLLM.__init__] Loading tokenizer...
+09:34:02  INFO      [LocalLLM.__init__] Tokenizer loaded. Loading model weights (may take several minutes)...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.82s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.88s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.81s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.28s/it]
+09:34:12  INFO      [LocalLLM.__init__] Layer distribution across devices: {'0': 15, '1': 21}
+09:34:12  INFO      [LocalLLM.__init__] Full device map (first 20 entries): {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 1, 'model.layers.15': 1, 'model.layers.16': 1, 'model.layers.17': 1, 'model.layers.18': 1}
+09:34:12  INFO      [LocalLLM.__init__] GPU 0 VRAM after load — allocated=6.67 GiB  reserved=6.72 GiB
+09:34:12  INFO      [LocalLLM.__init__] GPU 1 VRAM after load — allocated=8.29 GiB  reserved=8.36 GiB
+09:34:12  INFO      [main] Targeting 833 examples per level across ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+09:34:12  INFO      [checkpoint] No checkpoint found at data/finetune/checkpoints/checkpoint_A1.jsonl
+09:34:12  INFO      [generate_batch] Level=A1 | target=833 | resuming from 0
+/home/pmh/welllll/ProjectTest/tempvenv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/pmh/welllll/ProjectTest/tempvenv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/home/pmh/welllll/ProjectTest/tempvenv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/pmh/welllll/ProjectTest/tempvenv/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+09:39:26  INFO      [generate_batch] Level=A1 | 8/833 valid | 8 attempts | 100.0% success | 39.3s/attempt | ETA 539.8 min
+09:41:17  WARNING   [LocalLLM.generate] SLOW: 64.1s — check GPU utilisation with 'nvidia-smi dmon -s u'
